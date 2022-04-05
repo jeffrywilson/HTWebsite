@@ -60,8 +60,8 @@ const MoreFeatures: FunctionComponent<IProps> = ({ id }) => {
             }}
           >
             <Image
-              src="/images/big-banner.png"
-              alt=""
+              src="/images/more_features.png"
+              alt="More Awesome Feature"
               layout="fill"
               objectFit="cover"
             />

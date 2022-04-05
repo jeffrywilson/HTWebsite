@@ -9,11 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emotion/react": "^11.8.1",
+    "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.5.0",
     "@mui/material": "^5.5.0",
     "@mui/styled-engine-sc": "^5.4.2",
+    "@mui/system": "^5.5.3",
     "@project-serum/sol-wallet-adapter": "^0.2.6",
     "@solana/web3.js": "^1.36.0",
     "jotai": "^1.6.1",

@@ -6,6 +6,9 @@ import Link from "next/link";
 import { FunctionComponent } from "react";
 import { mock_home_segments } from "../../../mocks/homeStructure";
 import MenuLinkText from "../../shared/MenuLinkText";
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
+import { RouterSharp, LinkOffOutlined } from "@mui/icons-material";
 
 const Container = styled(Box)({
   zIndex: 10,
@@ -91,15 +94,32 @@ const MenuContainer = styled(Box)`
   @media (max-width: 750px) {
     display: none;
   }
+  a.selected {
+    color: blue;
+  }
 `;
 
+
 const MainBanner: FunctionComponent = () => {
+  const router = useRouter();
+  const [active, setActive] = useState<string | undefined>();
+  useEffect(()=>{
+    if(!router.isReady) return;
+    setActive(router.asPath);
+  }, [router.isReady]);
+
+  function handleClick(e: React.MouseEvent<HTMLAnchorElement>, link: string) {
+    e.stopPropagation();
+    setActive(link);
+  }
+
+  console.log("router path name", router.asPath);
   return (
     <CustomLayout id="home">
       <ImageBox>
         <ImageContainer>
           <Image
-            src="/images/big-banner.png"
+            src="/images/first_photo.png"
             alt=""
             objectFit="cover"
             layout="fill"
@@ -141,7 +161,9 @@ const MainBanner: FunctionComponent = () => {
           return (
             <>
               <Link href={`/landing/#${segment.link}`} key={index}>
-                <a>
+                <a
+                  className={`/landing#${segment.link}` === active ? "selected" : ""}
+                  onClick={(e) => handleClick(e, `/landing#${segment.link}`)}>
                   <MenuLinkText>{segment.title}</MenuLinkText>
                 </a>
               </Link>

@@ -1,11 +1,13 @@
 import styled from "@emotion/styled";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { ButtonBase, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import Image from "next/image";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 
 const MemberCard: FunctionComponent = () => {
+  const [left, setLeft] = useState<boolean | undefined>(true);
   return (
     <Stack
       sx={{
@@ -28,15 +30,54 @@ const MemberCard: FunctionComponent = () => {
         />
       </ImageContainer>
       <Stack sx={{ marginLeft: "18px" }} direction="column">
-        <Name>Navid</Name>
-        <Description>3D artist, UX/Ui designer and super handome</Description>
-        <Button>
-          <ArrowForwardIosIcon sx={{ color: "#1EA1FF" }} />
-        </Button>
+        <Name>{`Navid`}</Name>
+        <Description>{`3D artist, UX/Ui designer and super handome`}</Description>
+        {
+          left ? 
+          <PseduoDetail>
+            <Button onClick={()=>{
+              setLeft(false);
+            }}>
+              <ArrowForwardIosIcon sx={{ color: "#1EA1FF" }} />
+            </Button>
+          </PseduoDetail>
+          : 
+          <Detail>
+            <Description>{`detail`}</Description>
+            <Button onClick={()=>{
+              setLeft(true);
+            }}>
+              <ArrowBackIosIcon sx={{ color: "#1EA1FF" }} />
+            </Button>
+          </Detail>
+        }
+        
       </Stack>
     </Stack>
   );
 };
+
+const PseduoDetail = styled(Box)({
+  height: "100px",
+  display: "flex",
+  padding: "10px 0px",
+  alignItems: "flex-end",
+});
+
+const Detail = styled(Box)({
+  display: "flex",
+  background: "#3b3b3b",
+  height: "100px",
+  borderRadius: "6px",
+  padding: "10px",
+  flexDirection: "column",
+  button: {
+    alignSelf: "flex-end",
+    svg: {
+      marginLeft: "10px",
+    }
+  }
+});
 
 const ImageContainer = styled(Box)({
   flexShrink: "0",
@@ -63,7 +104,6 @@ const Button = styled(ButtonBase)({
   borderRadius: "10px",
   backgroundColor: "white",
   padding: "10px",
-  marginBottom: "16.5px",
 });
 
 export default MemberCard;

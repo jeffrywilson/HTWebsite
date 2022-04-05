@@ -43,7 +43,7 @@ const Landing: NextPage = () => {
             ROI than user experience. We have mashed the passion behind web2
             games with a never seen before earnings model, bringing a breath of
             ocean air into the space."
-        imageUrl="/images/big-banner.png"
+        imageUrl="/images/media_sharing.png"
         link={{ title: "Learn more >", url: "/Learn more >" }}
       />
       <Faq id="faq" />
