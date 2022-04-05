@@ -1,9 +1,9 @@
 import { IFeature } from "../interfaces/general";
 
 const title = "test";
-const image1 = "/images/1_3 Features Photo.png";
-const image2 = "/images/2_3 Features Photo.png";
-const image3 = "/images/3_3 Features Photo.png";
+const image1 = "/images/1_3.png";
+const image2 = "/images/2_3.png";
+const image3 = "/images/3_3.png";
 const description =
   "All players deserve to enjoy the high seas and shallow waters which is why there are no entry fees for High Tide’s sunny oasis. Explore the world, make new friends, and go on the fishing expedition of your dreams!";
 
