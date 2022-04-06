@@ -8,17 +8,19 @@ import { mock_home_segments } from "../../../mocks/homeStructure";
 import MenuLinkText from "../../shared/MenuLinkText";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import { RouterSharp, LinkOffOutlined } from "@mui/icons-material";
+import Scrollspy from 'react-scrollspy';
+import DarkModeToggle from "react-dark-mode-toggle";
 
 const Container = styled(Box)({
   zIndex: 10,
   minHeight: "100%",
   width: "100%",
+  height: "115vh",
   paddingLeft: "6rem",
   paddingRight: "2.43rem",
   paddingTop: "3.25rem",
   background:
-    "transparent linear-gradient(179deg, #09090900 0%, #090909C2 51%, #090909 100%) 0% 0% no-repeat padding-box",
+    "transparent linear-gradient(179deg, #ffffff00 0%, #ffffff00 51%, #090909 100%) 0% 0% no-repeat padding-box",
 });
 
 const ImageBox = styled(Box)({
@@ -81,6 +83,7 @@ const LinkDivider = styled(Box)({
   borderRadius: "50px",
   alignSelf: "end",
   marginBottom: "35px",
+  marginLeft: "140px",
 });
 
 const MenuContainer = styled(Box)`
@@ -97,12 +100,21 @@ const MenuContainer = styled(Box)`
   a.selected {
     color: blue;
   }
+  ul {
+    list-style-type: none;
+    li.active {
+      a {
+        color: blue;
+      }
+    }
+  }
 `;
-
 
 const MainBanner: FunctionComponent = () => {
   const router = useRouter();
-  const [active, setActive] = useState<string | undefined>();
+  const [active, setActive] = useState<string | undefined>('/landing#home');
+  const [isDarkMode, setIsDarkMode] = useState(() => true);
+
   useEffect(()=>{
     if(!router.isReady) return;
     setActive(router.asPath);
@@ -113,17 +125,22 @@ const MainBanner: FunctionComponent = () => {
     setActive(link);
   }
 
-  console.log("router path name", router.asPath);
   return (
     <CustomLayout id="home">
       <ImageBox>
         <ImageContainer>
-          <Image
+          {/* <Image
             src="/images/first_photo.png"
             alt=""
             objectFit="cover"
             layout="fill"
-          />
+          /> */}
+          <video autoPlay muted loop style={{ width: "100vw", display: isDarkMode ? "block" : "none" }}>
+            <source src="/videos/1-dark.mp4" type="video/mp4" />
+          </video>
+          <video autoPlay muted loop style={{ width: "100vw", display: isDarkMode ? "none" : "block" }}>
+            <source src="/videos/1-light.mp4" type="video/mp4" />
+          </video>
         </ImageContainer>
       </ImageBox>
       <Container>
@@ -144,6 +161,19 @@ const MainBanner: FunctionComponent = () => {
         <Box
           sx={{
             position: "absolute",
+            top: "4%",
+            right: "2%"
+          }}
+        >
+          <DarkModeToggle
+            onChange={setIsDarkMode}
+            checked={isDarkMode}
+            size={80}
+          />
+        </Box>
+        <Box
+          sx={{
+            position: "absolute",
             top: "50%",
             transform: "translateY(-50%)",
           }}
@@ -157,20 +187,21 @@ const MainBanner: FunctionComponent = () => {
         </Box>
       </Container>
       <MenuContainer>
+      <Scrollspy items={ ['home', 'about', 'features', 'team', 'white_paper', 'faq'] } currentClassName="active">
         {mock_home_segments.map((segment, index) => {
           return (
-            <>
-              <Link href={`/landing/#${segment.link}`} key={index}>
-                <a
-                  className={`/landing#${segment.link}` === active ? "selected" : ""}
-                  onClick={(e) => handleClick(e, `/landing#${segment.link}`)}>
-                  <MenuLinkText>{segment.title}</MenuLinkText>
-                </a>
-              </Link>
+            <li className={`/landing#${segment.link}` === active ? "active" : ""}>
+              <a
+                href={`#${segment.link}`}
+                onClick={(e) => handleClick(e, `/landing#${segment.link}`)}>
+                <MenuLinkText>{segment.title}</MenuLinkText>
+              </a>
+              
               {index < mock_home_segments.length - 1 && <LinkDivider />}
-            </>
+            </li>
           );
         })}
+      </Scrollspy>
       </MenuContainer>
     </CustomLayout>
   );

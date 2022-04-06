@@ -31,25 +31,26 @@ const FullScreenBanner: FunctionComponent<IProps> = ({
       <Box
         sx={{
           width: "100vw",
-          height: "100vh",
           position: "absolute",
           top: 0,
           left: 0,
         }}
       >
-        <Box sx={{ width: "100vw", height: "100vh", position: "relative" }}>
-          <Image
+        <Box sx={{ width: "100vw", position: "relative" }}>
+          {/* <Image
             objectFit="cover"
             src={imageUrl}
             alt={imageAlt}
             layout="fill"
-          />
+          /> */}
+          <video autoPlay muted loop style={{ width: "100vw" }}>
+            <source src="/videos/bottom.mp4" type="video/mp4" />
+          </video>
         </Box>
       </Box>
       <Box
         sx={{
           width: "100vw",
-          height: "100vh",
           zIndex: 5,
           background:
             "linear-gradient(90deg, rgba(6,6,6,1) 0%, #6E6E6E00 100%)",

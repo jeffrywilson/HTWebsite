@@ -17,6 +17,7 @@ const Landing: NextPage = () => {
   return (
     <Stack direction="column">
       <MainBanner />
+      
       <Banner
         id="about"
         title="Welcome to High Tides"
@@ -29,6 +30,7 @@ const Landing: NextPage = () => {
         imageUrl="/images/banner-image.png"
         imageObjectFit="contain"
       />
+      
       <Features id="features" />
       <MoreFeatures id="more_features" />
       <Partners id="partners" />

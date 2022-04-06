@@ -140,6 +140,7 @@ const BannerWrapper = styled(Layout)`
   justify-content: center;
   display: flex;
   flex-direction: column;
+  margin-top: 10rem;
   @media (max-width: 1450px) {
     margin-block: 4rem;
     flex-direction: column;
