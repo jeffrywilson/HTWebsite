@@ -15,7 +15,7 @@ const Container = styled(Box)({
   zIndex: 10,
   minHeight: "100%",
   width: "100%",
-  height: "125vh",
+  height: "115vh",
   paddingLeft: "6rem",
   paddingRight: "2.43rem",
   paddingTop: "3.25rem",
