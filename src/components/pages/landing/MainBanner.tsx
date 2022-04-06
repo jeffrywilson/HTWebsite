@@ -15,7 +15,7 @@ const Container = styled(Box)({
   zIndex: 10,
   minHeight: "100%",
   width: "100%",
-  height: "115vh",
+  height: "125vh",
   paddingLeft: "6rem",
   paddingRight: "2.43rem",
   paddingTop: "3.25rem",
@@ -190,7 +190,7 @@ const MainBanner: FunctionComponent = () => {
       <Scrollspy items={ ['home', 'about', 'features', 'team', 'white_paper', 'faq'] } currentClassName="active">
         {mock_home_segments.map((segment, index) => {
           return (
-            <li className={`/landing#${segment.link}` === active ? "active" : ""}>
+            <li className={`/landing#${segment.link}` === active ? "active" : ""} key={index}>
               <a
                 href={`#${segment.link}`}
                 onClick={(e) => handleClick(e, `/landing#${segment.link}`)}>
