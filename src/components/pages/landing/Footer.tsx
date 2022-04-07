@@ -10,7 +10,7 @@ import { useMediaQuery } from 'react-responsive';
 
 const Footer: FunctionComponent = () => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
-  console.log(isTabletOrMobile, "istabletormobile");
+  
   return (
     <FullScreenHeightLayout
       height="fit-content !important"

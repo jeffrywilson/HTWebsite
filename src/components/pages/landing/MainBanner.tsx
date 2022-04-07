@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import Scrollspy from 'react-scrollspy';
 import DarkModeToggle from "react-dark-mode-toggle";
+import { useMediaQuery } from 'react-responsive';
 
 const Container = styled(Box)({
   zIndex: 10,
@@ -36,13 +37,15 @@ const ImageContainer = styled(Box)({
   height: "100vh",
 });
 
-const CustomLayout = styled(Box)({
-  minHeight: "100vh !important",
-  height: "100vh !important",
-  alignItems: "center",
-  justifyContents: "center",
-  display: "flex",
-});
+const CustomLayout = styled(Box)`
+  height: 100vh !important;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  @media (max-width: 750px) {
+    height: auto !important;
+  }
+`;
 
 const Title = styled(Typography)({
   fontSize: "3.81rem",
@@ -114,6 +117,7 @@ const MainBanner: FunctionComponent = () => {
   const router = useRouter();
   const [active, setActive] = useState<string | undefined>('/landing#home');
   const [isDarkMode, setIsDarkMode] = useState(() => true);
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
 
   useEffect(()=>{
     if(!router.isReady) return;
@@ -158,11 +162,12 @@ const MainBanner: FunctionComponent = () => {
             </Box>
           </a>
         </Link>
+        
         <Box
           sx={{
             position: "absolute",
-            top: "4%",
-            right: "2%"
+            top: isTabletOrMobile ? "10%" : "4%",
+            right: isTabletOrMobile ? "3%" : "2%"
           }}
         >
           <DarkModeToggle
