@@ -12,7 +12,7 @@ import SocialLinkIcon from "../../../shared/SocialLinkIcon";
 
 const Socials: FunctionComponent = () => {
   return (
-    <Wrapper direction="row">
+    <Wrapper direction="row" alignItems="center" justifyContent="center">
       <SocialLinkIcon icon={<Instagram />} url="https://www.instagram.com" />
       <SocialLinkIcon icon={<LinkedIn />} url="https://www.linkedin" />
       <SocialLinkIcon icon={<Facebook />} url="https://www.facebook.com" />

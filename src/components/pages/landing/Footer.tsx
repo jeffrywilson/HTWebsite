@@ -6,8 +6,11 @@ import Link from "next/link";
 import React, { FunctionComponent } from "react";
 import FullScreenHeightLayout from "../../shared/FullScreenHeightLayout";
 import Socials from "./footer/Socials";
+import { useMediaQuery } from 'react-responsive';
 
 const Footer: FunctionComponent = () => {
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+  console.log(isTabletOrMobile, "istabletormobile");
   return (
     <FullScreenHeightLayout
       height="fit-content !important"
@@ -36,10 +39,19 @@ const Footer: FunctionComponent = () => {
           </LinksContainer>
           <Text>{"Follow High Tides's socials"}</Text>
         </Stack>
-        <Stack direction="row">
-          <Text flexGrow={1}>© Copyright HighTides 2022</Text>
-          <Socials />
-        </Stack>
+        { isTabletOrMobile && 
+          <Box>
+            <Text flexGrow={1} textAlign="center" marginBottom="10px" > © Copyright HighTides 2022</Text>
+            <Socials />
+          </Box>
+        }
+        {
+          !isTabletOrMobile &&
+          <Stack direction="row">
+            <Text flexGrow={1}>© Copyright HighTides 2022</Text>
+            <Socials />
+          </Stack>
+        }
       </Stack>
     </FullScreenHeightLayout>
   );
