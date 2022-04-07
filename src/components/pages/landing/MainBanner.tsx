@@ -104,7 +104,7 @@ const MenuContainer = styled(Box)`
     list-style-type: none;
     li.active {
       a {
-        color: blue;
+        color: #1ea1ff;
       }
     }
   }
